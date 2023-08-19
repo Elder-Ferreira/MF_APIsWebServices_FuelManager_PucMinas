@@ -22,5 +22,31 @@ namespace mf_apis_web_services_fuel_manager.Controllers
             var model = await _context.Veiculos.ToListAsync();
             return Ok(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Veiculo model)
+        {
+            if (model.AnoFabricacao <=0 || model.AnoModelo <=0)
+            {
+                return BadRequest(new {message = "Ano de Fabricação e Ano do Modelo são obrigatórios e devem ser maiores do que zero"});
+            }
+
+            _context.Veiculos.Add(model);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetById", new {id = model.Id}, model);   
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int Id)
+        {
+            var model = await _context.Veiculos
+                .FirstOrDefaultAsync(c => c.Id == Id);
+
+            if (model == null) NotFound();
+
+            return Ok(model);
+            
+        }
     }
 }
