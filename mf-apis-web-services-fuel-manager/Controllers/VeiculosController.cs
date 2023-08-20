@@ -26,15 +26,15 @@ namespace mf_apis_web_services_fuel_manager.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Veiculo model)
         {
-            if (model.AnoFabricacao <=0 || model.AnoModelo <=0)
+            if (model.AnoFabricacao <= 0 || model.AnoModelo <= 0)
             {
-                return BadRequest(new {message = "Ano de Fabricação e Ano do Modelo são obrigatórios e devem ser maiores do que zero"});
+                return BadRequest(new { message = "Ano de Fabricação e Ano do Modelo são obrigatórios e devem ser maiores do que zero" });
             }
 
             _context.Veiculos.Add(model);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetById", new {id = model.Id}, model);   
+            return CreatedAtAction("GetById", new { id = model.Id }, model);
         }
 
         [HttpGet("{id}")]
@@ -46,7 +46,38 @@ namespace mf_apis_web_services_fuel_manager.Controllers
             if (model == null) NotFound();
 
             return Ok(model);
-            
+
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, Veiculo model)
+        {
+            if (id != model.Id) return BadRequest();
+
+            var modeloDb = await _context.Veiculos.AsNoTracking()
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (modeloDb == null) return NotFound();
+
+            _context.Veiculos.Update(model);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var model = await _context.Veiculos.FindAsync(id);
+
+            if (model == null) NotFound();
+
+            _context.Veiculos.Remove(model);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+
         }
     }
 }
