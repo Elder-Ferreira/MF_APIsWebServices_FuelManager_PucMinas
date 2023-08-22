@@ -41,6 +41,8 @@ namespace mf_apis_web_services_fuel_manager.Controllers
 
             if (model == null) return NotFound();
 
+            GerarLinks(model);
+
             return Ok(model);
 
         }
@@ -75,6 +77,14 @@ namespace mf_apis_web_services_fuel_manager.Controllers
             return NoContent();
 
         }
+
+        private void GerarLinks(Consumo model)
+        {
+            model.Links.Add(new LinkDto(model.Id, Url.ActionLink(), rel: "self", metodo: "GET"));
+            model.Links.Add(new LinkDto(model.Id, Url.ActionLink(), rel: "update", metodo: "PUT"));
+            model.Links.Add(new LinkDto(model.Id, Url.ActionLink(), rel: "delete", metodo: "DELETE"));
+        }
+
     }
 }
  

@@ -5,7 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 namespace mf_apis_web_services_fuel_manager.Models
 {
     [Table("Veiculos")]
-    public class Veiculo
+    public class Veiculo : LinksHATEOS
     {
         [Key]
         public int Id { get; set; }
