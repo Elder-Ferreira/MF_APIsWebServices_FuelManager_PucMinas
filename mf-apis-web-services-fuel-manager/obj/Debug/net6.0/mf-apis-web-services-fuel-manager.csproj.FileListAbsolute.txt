@@ -66,3 +66,5 @@ C:\Workspace\mf-apis-web-services-fuel-manager\mf-apis-web-services-fuel-manager
 C:\Workspace\mf-apis-web-services-fuel-manager\mf-apis-web-services-fuel-manager\obj\Debug\net6.0\mf-apis-web-services-fuel-manager.pdb
 C:\Workspace\mf-apis-web-services-fuel-manager\mf-apis-web-services-fuel-manager\obj\Debug\net6.0\mf-apis-web-services-fuel-manager.genruntimeconfig.cache
 C:\Workspace\mf-apis-web-services-fuel-manager\mf-apis-web-services-fuel-manager\obj\Debug\net6.0\ref\mf-apis-web-services-fuel-manager.dll
+C:\Workspace\mf-apis-web-services-fuel-manager\mf-apis-web-services-fuel-manager\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Workspace\mf-apis-web-services-fuel-manager\mf-apis-web-services-fuel-manager\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
