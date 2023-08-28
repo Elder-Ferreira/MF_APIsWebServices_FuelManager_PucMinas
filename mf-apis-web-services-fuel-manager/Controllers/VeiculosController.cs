@@ -18,6 +18,7 @@ namespace mf_apis_web_services_fuel_manager.Controllers
             _context = context;
         }
 
+        [Authorize(Roles ="Usuario")]
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
@@ -25,6 +26,7 @@ namespace mf_apis_web_services_fuel_manager.Controllers
             return Ok(model);
         }
 
+        [Authorize(Roles ="Administrador,Usuario")]
         [HttpPost]
         public async Task<IActionResult> Create(Veiculo model)
         {
@@ -39,6 +41,7 @@ namespace mf_apis_web_services_fuel_manager.Controllers
             return CreatedAtAction("GetById", new { id = model.Id }, model);
         }
 
+        [Authorize(Roles ="Administrador")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int Id)
         {
